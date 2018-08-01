@@ -43,7 +43,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="yZ7-HU-hTc">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="APD-fX-Czw">
+                        <barButtonItem key="leftBarButtonItem" id="APD-fX-Czw">
                             <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="krO-MJ-Hyo">
                                 <rect key="frame" x="16" y="6.5" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -66,18 +66,21 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xQA-Tx-job" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="Ncc-ed-RRw" userLabel="NoDataView">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <rect key="frame" x="0.0" y="0.0" width="374" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NO DATA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAc-WZ-L98">
-                            <rect key="frame" x="85" y="54" width="71" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO DATA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAc-WZ-L98">
+                            <rect key="frame" x="151.5" y="54" width="71" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="uAc-WZ-L98" firstAttribute="centerX" secondItem="Ncc-ed-RRw" secondAttribute="centerX" id="U2w-pv-yys"/>
+                        <constraint firstItem="uAc-WZ-L98" firstAttribute="centerY" secondItem="Ncc-ed-RRw" secondAttribute="centerY" id="szi-wf-GJY"/>
+                    </constraints>
                     <viewLayoutGuide key="safeArea" id="ihv-9y-zUK"/>
                 </view>
             </objects>

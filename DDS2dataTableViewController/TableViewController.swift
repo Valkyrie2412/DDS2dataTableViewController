@@ -28,63 +28,37 @@ class TableViewController: UITableViewController {
         tableView.dataSource = numbersDaTaSource
         numbersDaTaSource.numbersData = self
         wordsDataSource.wordsData = self
-        
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hasNodata = switchData.isOn ? (numbersDaTaSource.numbers.count == 0) : (wordsDataSource.words.count == 0)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     @IBAction func changeData(_ sender: UISwitch) {
-        if sender .isOn {
-            tableView.dataSource = numbersDaTaSource
-            hasNodata = (numbersDaTaSource.numbers.count == 0)
-        } else {
-            tableView.dataSource = wordsDataSource
-            hasNodata = (wordsDataSource.words.count == 0)
-        }
+        sender.isOn ? (tableView.dataSource = numbersDaTaSource) : (tableView.dataSource = wordsDataSource)
+        sender.isOn ? (hasNodata = (numbersDaTaSource.numbers.count == 0)) : (hasNodata = (wordsDataSource.words.count == 0))
         tableView.reloadData()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? ViewController {
             if let textIndex = tableView.indexPathForSelectedRow {
-                if switchData.isOn {
-                    viewController.data = String(numbersDaTaSource.numbers[textIndex.row])
-                } else{
-                    viewController.data = wordsDataSource.words[textIndex.row]
-                }
+                viewController.data = switchData.isOn ? (String(numbersDaTaSource.numbers[textIndex.row])) : (wordsDataSource.words[textIndex.row])
             }
         }
     }
     @IBAction func unwind(for unwindSegue: UIStoryboardSegue) {
         guard let detailVC = unwindSegue.source as? ViewController else {return}
         if let indexPath = tableView.indexPathForSelectedRow {
-            if switchData.isOn {
-                numbersDaTaSource.numbers[indexPath.row] = Int(detailVC.data ?? "") ?? 0
-            } else {
-                wordsDataSource.words[indexPath.row] = detailVC.data ?? ""
-            }
+            switchData.isOn ? (numbersDaTaSource.numbers[indexPath.row] = Int(detailVC.data ?? "") ?? 0) : (wordsDataSource.words[indexPath.row] = detailVC.data ?? "")
             tableView.reloadData()
         } else {
-            if switchData.isOn {
-                numbersDaTaSource.numbers.append (Int(detailVC.data ?? "") ?? 0 )
-                hasNodata = (numbersDaTaSource.numbers.count == 0)
-            } else {
-                wordsDataSource.words.append(detailVC.data ?? "")
-                hasNodata = (wordsDataSource.words.count == 0)
-            }
+            switchData.isOn ? (numbersDaTaSource.numbers.append(Int(detailVC.data ?? "") ?? 0)) : (wordsDataSource.words.append(detailVC.data ?? ""))
         }
         tableView.reloadData()
     }
 }
-// viet gon ham if else
 
-
-//if let index = tableView.indexPathForSelectedRow?.row {
-//    switchData.isOn ?  ( numberDataSource.number[index] = Int(viewcontroller.name)!) : ( stringDataSource.string[index] = viewcontroller.name)
-//}else{
-//    switchData.isOn ? (numberDataSource.number.append(Int(viewcontroller.name)!)) : ( stringDataSource.string.append(viewcontroller.name))
-//
-//
-//}
